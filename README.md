@@ -140,11 +140,11 @@ Response messages can be sent when the notification is activated. ChatNotify sup
 - **CommandKeys**: Triggers [CommandKeys](https://modrinth.com/project/commandkeys) macros
 - **Discord**: Sends a message to a Discord webhook (useful for monitoring chat events remotely)
 
-For Discord webhooks, you'll need to:
+For Discord webhooks:
 1. Create a webhook in your Discord server (Server Settings > Integrations > Webhooks)
 2. Copy the webhook URL
-3. In ChatNotify, open Detection > Sender Detection and enable Discord Webhook
-4. Paste the webhook URL into the Webhook URL field
+3. Select "Discord" (🪝) as the response type
+4. Enter your message in the left field and paste the webhook URL in the right field
 
 Use with caution, as you can easily make a notification send a response which triggers the
 notification again in a loop, which will spam chat and then crash the game.
