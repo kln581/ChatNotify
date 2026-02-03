@@ -702,7 +702,9 @@ public class FilterList<E extends StringSupplier> extends DragReorderList {
                             );
                     webhookField.setCharacterLimit(256);
                     webhookField.setValue(
-                            message.webhookUrl != null ? message.webhookUrl : ""
+                            message.webhookUrl != null
+                                    ? message.webhookUrl
+                                    : Response.webhookUrlDefault
                     );
                     webhookField.setValueListener(
                             (val) -> message.webhookUrl = val.strip()

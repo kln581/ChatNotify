@@ -150,6 +150,8 @@ public class Response implements StringSupplier {
     Response validate() {
         if (delayTicks < 0)
             delayTicks = delayTicksDefault;
+        if (webhookUrl == null)
+            webhookUrl = webhookUrlDefault;
         return this;
     }
 
