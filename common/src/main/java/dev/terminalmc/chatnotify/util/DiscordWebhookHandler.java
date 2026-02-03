@@ -48,7 +48,11 @@ public class DiscordWebhookHandler {
      * @param content    the message content to send
      * @param triggerMessage the original message that triggered the notification
      */
-    public static void sendAsync(String webhookUrl, String content, @Nullable Component triggerMessage) {
+    public static void sendAsync(
+            String webhookUrl,
+            String content,
+            @Nullable Component triggerMessage
+    ) {
         if (webhookUrl == null || webhookUrl.isBlank()) {
             ChatNotify.LOG.warn("Discord webhook URL is empty, skipping webhook send");
             return;
@@ -86,7 +90,10 @@ public class DiscordWebhookHandler {
                 serverName = mc.getCurrentServer().name;
             } else if (mc.getSingleplayerServer() != null) {
                 // Singleplayer - use world name
-                serverName = mc.getSingleplayerServer().getWorldData().getLevelSettings().levelName();
+                serverName = mc.getSingleplayerServer()
+                        .getWorldData()
+                        .getLevelSettings()
+                        .levelName();
             }
         }
         footer.addProperty("text", serverName);
@@ -115,7 +122,10 @@ public class DiscordWebhookHandler {
                     } else if (statusCode == 429) {
                         ChatNotify.LOG.warn("Discord webhook rate limited (HTTP {})", statusCode);
                     } else {
-                        ChatNotify.LOG.error("Failed to send Discord webhook message (HTTP {})", statusCode);
+                        ChatNotify.LOG.error(
+                                "Failed to send Discord webhook message (HTTP {})",
+                                statusCode
+                        );
                     }
                 })
                 .exceptionally(throwable -> {
@@ -138,10 +148,13 @@ public class DiscordWebhookHandler {
             String path = uri.getPath();
             
             // Discord webhook URLs must use HTTPS for secure transmission
-            // and should be https://discord.com/api/webhooks/... or https://discordapp.com/api/webhooks/...
-            return "https".equals(scheme) &&
-                   (host != null && (host.equals("discord.com") || host.equals("discordapp.com"))) &&
-                   path != null && path.startsWith("/api/webhooks/");
+            // Format: https://discord.com/api/webhooks/...
+            //     or: https://discordapp.com/api/webhooks/...
+            return "https".equals(scheme)
+                   && (host != null
+                       && (host.equals("discord.com")
+                           || host.equals("discordapp.com")))
+                   && path != null && path.startsWith("/api/webhooks/");
         } catch (Exception e) {
             return false;
         }

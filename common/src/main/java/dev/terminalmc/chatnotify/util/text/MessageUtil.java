@@ -643,7 +643,11 @@ public class MessageUtil {
      * @param notif the Notification.
      * @param triggerMessage the original message that triggered the notification
      */
-    private static void sendResponses(Notification notif, @Nullable Matcher matcher, @Nullable Component triggerMessage) {
+    private static void sendResponses(
+            Notification notif,
+            @Nullable Matcher matcher,
+            @Nullable Component triggerMessage
+    ) {
         if (notif.responseEnabled) {
             int totalDelay = 0;
             for (Response msg : notif.responses) {
