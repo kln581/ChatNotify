@@ -61,7 +61,7 @@ import java.util.function.Supplier;
  */
 public class Config {
 
-    public static final int VERSION = 9;
+    public static final int VERSION = 10;
     public final int version = VERSION;
     private static final Path CONFIG_DIR = Services.PLATFORM.getConfigDir();
     public static final String FILE_NAME = ChatNotify.MOD_ID + ".json";

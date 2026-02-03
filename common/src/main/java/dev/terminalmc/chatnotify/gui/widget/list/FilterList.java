@@ -670,6 +670,50 @@ public class FilterList<E extends StringSupplier> extends DragReorderList {
                             ? message.string.split("-")[1]
                             : "");
                     elements.add(keyField2);
+                } else if (message.type.equals(Response.Type.DISCORD)) {
+                    // Discord webhook - show message and webhook URL fields
+                    int fieldWidth = msgFieldWidth / 2 - fieldSpacing / 2;
+                    
+                    // Message field
+                    MultiLineTextField msgField =
+                            new MultiLineTextField(
+                                    movingX,
+                                    0,
+                                    fieldWidth,
+                                    height * 2
+                            );
+                    msgField.setCharacterLimit(256);
+                    msgField.setValue(message.string);
+                    msgField.setValueListener((val) -> message.string = val.strip());
+                    msgField.setHint(localized(
+                            "option",
+                            "notif.response.discord.message"
+                    ).copy());
+                    elements.add(msgField);
+                    movingX += fieldWidth + fieldSpacing;
+                    
+                    // Webhook URL field
+                    MultiLineTextField webhookField =
+                            new MultiLineTextField(
+                                    movingX,
+                                    0,
+                                    fieldWidth,
+                                    height * 2
+                            );
+                    webhookField.setCharacterLimit(256);
+                    webhookField.setValue(
+                            message.webhookUrl != null
+                                    ? message.webhookUrl
+                                    : Response.webhookUrlDefault
+                    );
+                    webhookField.setValueListener(
+                            (val) -> message.webhookUrl = val.strip()
+                    );
+                    webhookField.setHint(localized(
+                            "option",
+                            "notif.response.discord.webhook_url"
+                    ).copy());
+                    elements.add(webhookField);
                 } else {
                     // Response field
                     MultiLineTextField msgField =

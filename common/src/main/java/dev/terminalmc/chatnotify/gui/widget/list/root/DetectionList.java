@@ -31,6 +31,8 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 
+import java.time.Duration;
+
 import static dev.terminalmc.chatnotify.util.Localization.localized;
 
 public class DetectionList extends OptionList {

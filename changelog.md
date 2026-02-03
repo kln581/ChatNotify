@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.7
+
+- Added Discord webhook support for notification responses
+
 ## 2.6.6
 
 - Fixed format code translation not resetting format on color change
